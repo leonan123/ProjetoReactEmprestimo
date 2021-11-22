@@ -1,23 +1,16 @@
 import React from 'react';
 
-import InputGroup from '../../InputGroup/InputGroup.jsx';
+import InputGroup from '../../InputGroup/InputGroup';
+import BtnSubmit from '../../BtnSubmit/BtnSubmit';
+import Select from '../SelectInstallments/Select.jsx';
 
 import './style.css';
 
 const RightSection = () => {
 	return (
-		<div>
+		<>
 			<div className="form">
 				<form>
-					<div className="container-inputGroup">
-						<InputGroup
-							labelId={'label-cpf'}
-							labelText={'Digite seu CPF'}
-							errorText={'Por favor insira um CPF válido!'}
-							inputId={'cpf'}
-							inputType={'text'}
-						/>
-					</div>
 					<div className="container-inputGroup">
 						<InputGroup
 							labelId={'label-emprestimo'}
@@ -28,32 +21,24 @@ const RightSection = () => {
 						/>
 					</div>
 					<div className="container-inputGroup">
-						<InputGroup
-							labelId={'teste'}
-							labelText={'Prestações'}
-							errorText={'Insira um valor válido!'}
-							inputId={'valor'}
-							inputType={'number'}
-						/>
+						<Select />
 					</div>
 					<div className="container-inputGroup">
 						<InputGroup
-							labelId={'teste2'}
-							labelText={'Data a pagar'}
-							errorText={'Insira um valor válido!'}
+							labelId={'dataPrimeiraParcela'}
+							labelText={'Escolha a data da primeira parcela'}
+							errorText={'Insira uma data válida!'}
 							inputId={'date'}
 							inputType={'date'}
 						/>
 					</div>
-					<div className="btn-confirm">
-					<button type="button">
-						<span>Enviar</span>
-						<i className="bi bi-arrow-right" />
-					</button>
-				</div>
-				</form>
+					<BtnSubmit 
+						link=""
+						text="Simular Empréstimo"
+					/>			
+			</form>
 			</div>
-		</div>
+		</>
 	);
 };
 

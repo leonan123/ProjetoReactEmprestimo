@@ -1,50 +1,47 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import {mask, unMask} from 'remask';
+import { mask, unMask } from 'remask';
 
 import './style.css';
 
 const InputGroup = (props) => {
-
 	const [ value, setValue ] = useState('');
 
 	//Eventos do input
 	const inputChange = (e) => {
-	
-		switch (props.inputId){
+		switch (props.inputId) {
 			case 'cpf':
 				setValue(mask(unMask(e.target.value), [ '999.999.999-99' ]));
-			break;
+				break;
 			case 'valor':
-				setValue(mask(unMask(e.target.value), [ '99.99']));
-			break;
-		
-			default:
+				setValue(mask(unMask(e.target.value), [ '999.999.999-99' ]));
+				break;
 
+			default:
 		}
 	};
 
-	const inputFocus = (e) => { 
+	const inputFocus = (e) => {
 		let labelInput = document.querySelector(`label#${props.labelId}`);
 		labelInput.classList.add('active');
-	}
+	};
 
 	const inputBlur = (e) => {
 		let labelInput = document.querySelector(`label#${props.labelId}`);
 
-		if(e.target.value.length <= 0){
+		if (e.target.value.length <= 0) {
 			labelInput.classList.remove('active');
 		}
 
 		validator(e);
-	} 
+	};
 
 	const validator = (e) => {
-		if (props.inputId != 'date'){
+		if (props.inputId !== 'date') {
 			let iconsCheck = document.querySelectorAll('.btns-check > i');
 			let errorText = document.querySelector('span.error');
 			let btnConfirm = document.querySelector('.btn-confirm button');
-	
+
 			if (validaCPF(e.target.value)) {
 				e.target.classList.remove('incorrect');
 				e.target.classList.add('correct');
@@ -52,17 +49,14 @@ const InputGroup = (props) => {
 				iconsCheck[1].classList.add('validator');
 				errorText.classList.remove('active');
 				btnConfirm.removeAttribute('disabled');
-				btnConfirm.classList.remove('disabled');
 			} else {
 				e.target.classList.add('incorrect');
 				iconsCheck[0].classList.add('validator');
 				iconsCheck[1].classList.remove('validator');
 				errorText.classList.add('active');
-				btnConfirm.setAttribute('disabled', true);
-				btnConfirm.classList.add('disabled');
 			}
-		};
 		}
+	};
 
 	const validaCPF = (strCPF) => {
 		if (strCPF.length < 14) {
@@ -107,7 +101,6 @@ const InputGroup = (props) => {
 		// }
 	};
 
-
 	return (
 		<div className="input-group">
 			<div className="btns-check">
@@ -115,12 +108,13 @@ const InputGroup = (props) => {
 				<i id="incorrect" className="bi bi-x-lg validator" />
 			</div>
 			<label id={props.labelId}>{props.labelText}</label>
-			<input 
-			type={props.inputType} 
-			value={value} 
-			onFocus={inputFocus} 
-			onBlur={inputBlur} 
-			onChange={inputChange}		
+			<input
+				type={props.inputType}
+				value={value}
+				id={props.inputId}
+				onFocus={inputFocus}
+				onBlur={inputBlur}
+				onChange={inputChange}
 			/>
 			<span className="error">{props.errorText}</span>
 		</div>

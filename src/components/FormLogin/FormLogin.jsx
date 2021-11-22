@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
-
+import React from 'react';
 import InputGroup from '../InputGroup/InputGroup';
+import BtnSubmit from '../BtnSubmit/BtnSubmit';
+
 import './style.css';
 
 const FormLogin = (props) => {
@@ -17,14 +18,10 @@ const FormLogin = (props) => {
 					errorText={'Por favor insira um CPF válido!'}
 					inputId={'cpf'}
 				/>
-				<div className="btn-confirm">
-					<Link class="link" to="/lending-simulator">
-						<button type="button">
-							<span>Continuar</span>
-							<i className="bi bi-arrow-right" />
-						</button>
-					</Link>
-				</div>
+				<BtnSubmit 
+				link="lending-simulator"
+				text="Continuar"
+				/>
 			</form>
 		</div>
 	);
